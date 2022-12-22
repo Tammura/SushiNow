@@ -12,3 +12,6 @@ Proposte tecnologie front-end:
 - Nextjs
 - Reactjs
 - Angular
+
+
+Menù pranzo: https://sushitomi.it/wp-content/uploads/2020/11/Tomi-Monza-NTOMI-Men%C3%B9-Pranzo.pdf
