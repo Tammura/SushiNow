@@ -3,7 +3,7 @@ SushiNow è un'applicativo che da a tutti gli amanti del sushi la possibilità d
 
 Roadmap:
 - [x] Decisione delle tecnologie
-- [ ] Preparare design
+- [x] Preparare design
 - [ ] Sviluppo pagina login + inserimento numero tavolo
 - [ ] Sviluppo pagina inserimento ordini
 - [ ] Sviluppo pagina visualizzazione degli ordini
