@@ -1,0 +1,13 @@
+server:
+  port: 9500
+spring:
+  data:
+    mongodb:
+      auto-index-creation: 'true'
+      authentication-database: admin
+      username: rootuser
+      database: user
+      password: rootpass
+      port: '27017'
+      host: localhost
+

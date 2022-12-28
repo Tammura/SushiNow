@@ -1,0 +1,319 @@
+openapi: 3.0.3
+info:
+  version: 1.0.7.alpha
+  title: sushi now
+  description: API Specification for sushiNow
+paths:
+  /sushiNow/user:
+    post:
+      operationId: insertNewSushiUser
+      description: Creates a new sushi user
+      summary: Creates a new sushi user request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/SushiUser'
+      responses:
+        '201':
+          $ref: '#/components/responses/Created'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  '/sushiNow/table':
+    post:
+      operationId: insertNewSushiTable
+      description: Creates a new sushi Table
+      summary: Creates a new sushi Table request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/SushiTable'
+      responses:
+        '201':
+          $ref: '#/components/responses/Created'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  '/sushiNow/order':
+    post:
+      operationId: insertNewSushiOrder
+      description: Creates a new sushi Order
+      summary: Creates a new sushi order request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/SushiOrder'
+      responses:
+        '201':
+          $ref: '#/components/responses/Created'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  '/sushiNow/order/add':
+    get:
+      operationId: incrementSushiOrder
+      description: Creates a new add sushi order
+      summary: Creates a new increment sushi request
+      parameters:
+        - in: query
+          name: number
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: qta
+          required: true
+          schema:
+            type: integer
+
+
+      responses:
+        '200':
+          description: Ok
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  '/sushiNow/table/{id}/reads':
+    get:
+      operationId: readsSushiTable
+      description: Creates a new add sushi order
+      summary: Creates read table request
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SushiTable'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  '/sushiNow/order/update':
+    put:
+      operationId: updateSushiOrder
+      description: Creates a new update sushi order
+      summary: Creates update order request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/SushiOrder'
+      responses:
+        '200':
+          description: Ok
+          content:
+            text/plain:
+              schema:
+                type: boolean
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  '/sushiNow/order/{id}/delete':
+    delete:
+      operationId: deleteSushiOrder
+      description: Creates a new delete sushi order
+      summary: Creates delete order request
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            text/plain:
+              schema:
+                type: boolean
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    # Init evaluation - POST /sushiNow/order
+    SushiOrder:
+      properties:
+        id:
+          type: string
+          description: Id of this specific request
+        totFoodNumber:
+          type: array
+          items:
+            type: integer
+        totFoodQta:
+          type: array
+          items:
+            type: integer
+
+    # Init evaluation - POST /sushiNow/table
+    SushiTable:
+      required:
+        - number
+      properties:
+        id:
+          type: string
+          description: Id of this specific request
+        number:
+          type: integer
+          description: number of table
+        totFoodNumber:
+          type: array
+          items:
+            type: integer
+        totFoodQta:
+          type: array
+          items:
+            type: integer
+
+    # Init evaluation - POST /sushiNow/user
+    SushiUser:
+      required:
+        - username
+      properties:
+        id:
+          type: string
+          description: Id of this specific request
+        username:
+          type: string
+          description: name of user
+    ErrorResponse:
+      type: object
+      properties:
+        timeStamp:
+          type: string
+          description: Exact moment in time when the error occurred
+        httpStatus:
+          type: integer
+          enum:
+            - 400
+            - 401
+            - 402
+            - 403
+            - 404
+            - 405
+            - 406
+            - 407
+            - 408
+            - 409
+            - 410
+            - 411
+            - 412
+            - 413
+            - 414
+            - 415
+            - 416
+            - 417
+            - 418
+            - 421
+            - 422
+            - 423
+            - 424
+            - 425
+            - 426
+            - 428
+            - 429
+            - 431
+            - 451
+            - 500
+            - 501
+            - 502
+            - 503
+            - 504
+            - 505
+            - 506
+            - 507
+            - 508
+            - 510
+            - 511
+          description: Http status code returned when the error occured
+        errorCode:
+          type: integer
+          minimum: 1
+          description: Platform specific error code to use for troubleshooting purposes
+        message:
+          type: string
+          maxLength: 64
+          description: Human readable message explaining briefly what happened
+          nullable: true
+  responses:
+    Created:
+      description: The resource was successfully created
+      headers:
+        location:
+          description: Location of the newly created resource
+          required: true
+          schema:
+            type: string
+    NoContent:
+      description: The resource was successfully deleted
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The specified resource could not be accepted due to validation rules
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: The specified resource was already present
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
