@@ -1,14 +1,14 @@
 # SushiNow
 SushiNow è un'applicativo che da a tutti gli amanti del sushi la possibilità di segnarsi tutti i piatti in maniera semplice ed efficace per i pranzi/cene di gruppo
 
-##Getting Started
+## Getting Started
 First of all we raccomanded to use `yarn` not `npm`
 
-###Install dependencies
+### Install dependencies
 - Go inside the correct directory `frontend/sushi-now/`
 - `yarn install`
 
-###Run project
+### Run project
 - `yarn run dev`
 
 
