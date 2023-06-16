@@ -10,7 +10,7 @@ import com.example.sushiNowBe.model.entity.UserEntity;
 
 public interface SushiNowService {
 
-    Boolean deleteOrder(String id);
+    void deleteOrder(String id);
 
     String incrementOrder(Integer orderNumber, Integer increment);
 

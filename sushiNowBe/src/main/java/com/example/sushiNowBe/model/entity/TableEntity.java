@@ -9,9 +9,8 @@ import java.util.List;
 
 @Document
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 public class TableEntity {
-
     @Id
     private String id;
 

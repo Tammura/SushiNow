@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import java.util.List;
 
-@AllArgsConstructor
+//@AllArgsConstructor
 @Getter
 @Setter
 public class Table {

@@ -12,6 +12,7 @@ import com.example.sushiNowBe.model.entity.OrderEntity;
 import com.example.sushiNowBe.model.entity.TableEntity;
 import com.example.sushiNowBe.model.entity.UserEntity;
 import com.example.sushiNowBe.service.SushiNowService;
+import exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -29,11 +30,16 @@ public class SushiController implements SushiNowApi{
 
     @Override
     public ResponseEntity<Boolean> deleteSushiOrder(String id) {
-        return ResponseEntity.ok(service.deleteOrder(id));
+        try {
+            service.deleteOrder(id);
+        }catch (ResourceNotFoundException e){
+            return ResponseEntity.ok(false);
+        }
+        return null;
     }
 
     @Override
-    public ResponseEntity<String> incrementSushiOrder(Integer number, Integer qta) {
+    public ResponseEntity<String> incrementSushiOrder(Integer number, Integer qta, String id) {
         return ResponseEntity.ok(service.incrementOrder(number, qta));
     }
 

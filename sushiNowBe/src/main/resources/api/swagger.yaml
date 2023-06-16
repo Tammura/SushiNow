@@ -89,6 +89,11 @@ paths:
           required: true
           schema:
             type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
 
 
       responses:
