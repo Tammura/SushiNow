@@ -15,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -42,7 +41,18 @@ public class SushiNowServiceImpl implements SushiNowService {
     }
 
     @Override
-    public String incrementOrder(Integer orderNumber, Integer increment) {
+    public String incrementOrder(Integer orderNumber, Integer increment, String id) {
+
+        OrderEntity entity = isValuePresent(orderRepository.findById(id), id);
+
+//        OrderEntity entityToSave = OrderEntity.builder()
+//                .totFoodQta(entity.getTotFoodQta())
+//                .totFoodNumber()
+//                .build();
+
+
+
+
         return null;
     }
 
@@ -70,4 +80,16 @@ public class SushiNowServiceImpl implements SushiNowService {
     public Boolean updateOrder(Order order) {
         return null;
     }
+
+
+    public static <T> T isValuePresent(Optional<T> optional, String id) {
+
+        if (optional.isEmpty()){
+            throw new ResourceNotFoundException("entity not found for id : ", id);
+        }
+
+        return optional.get();
+
+    }
+
 }

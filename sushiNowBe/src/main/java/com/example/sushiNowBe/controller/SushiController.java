@@ -40,7 +40,7 @@ public class SushiController implements SushiNowApi{
 
     @Override
     public ResponseEntity<String> incrementSushiOrder(Integer number, Integer qta, String id) {
-        return ResponseEntity.ok(service.incrementOrder(number, qta));
+        return ResponseEntity.ok(service.incrementOrder(number, qta, id));
     }
 
     @Override

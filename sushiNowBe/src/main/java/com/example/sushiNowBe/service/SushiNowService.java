@@ -12,7 +12,7 @@ public interface SushiNowService {
 
     void deleteOrder(String id);
 
-    String incrementOrder(Integer orderNumber, Integer increment);
+    String incrementOrder(Integer orderNumber, Integer increment, String id);
 
     OrderEntity insertNewOrder(Order order);
 
